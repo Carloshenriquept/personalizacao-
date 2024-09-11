@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalização de EcoBags</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .section {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .color-picker, .accessories-selector, .model-selector, .size-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .color-picker div, .accessories-selector div, .model-selector div, .size-selector div {
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .color-picker div:hover, .accessories-selector div:hover, .model-selector div:hover, .size-selector div:hover {
+            background-color: #f1f1f1;
+        }
+        .color-picker input, .accessories-selector input, .model-selector input, .size-selector input {
+            margin-right: 10px;
+        }
+        .custom-color {
+            padding: 10px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        .custom-color input {
+            border: none;
+            outline: none;
+            width: 50px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        .custom-color label {
+            margin: 0;
+        }
+        .product-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .product-preview img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .submit-button {
+            text-align: center;
+        }
+        .submit-button button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .submit-button button:hover {
+            background-color: #45a049;
+        }
+        .thank-you {
+            display: none;
+            text-align: center;
+        }
+        .thank-you img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .thank-you p {
+            font-size: 18px;
+            color: #333;
+        }
+        .form-input {
+            margin-bottom: 15px;
+        }
+        .form-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IPMA Personalização de Ecobags</h1>
+        </div>
+        <div class="main">
+            <div class="section">
+                <h2>Escolha a Cor da Ecobag</h2>
+                <div class="color-picker">
+                    <div style="background-color: #f44336;" onclick="selectColor('#f44336')"></div>
+                    <div style="background-color: #e91e63;" onclick="selectColor('#e91e63')"></div>
+                    <div style="background-color: #9c27b0;" onclick="selectColor('#9c27b0')"></div>
+                    <div style="background-color: #673ab7;" onclick="selectColor('#673ab7')"></div>
+                    <div style="background-color: #3f51b5;" onclick="selectColor('#3f51b5')"></div>
+                    <div class="custom-color">
+                        <input type="color" id="custom-color" onchange="selectCustomColor(this.value)">
+                        <label for="custom-color">Personalize sua cor</label>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Escolha a Cor das Alças</h2>
+                <div class="color-picker">
+                    <div style="background-color: #f44336;" onclick="selectHandleColor('#f44336')"></div>
+                    <div style="background-color: #e91e63;" onclick="selectHandleColor('#e91e63')"></div>
+                    <div style="background-color: #9c27b0;" onclick="selectHandleColor('#9c27b0')"></div>
+                    <div style="background-color: #673ab7;" onclick="selectHandleColor('#673ab7')"></div>
+                    <div style="background-color: #3f51b5;" onclick="selectHandleColor('#3f51b5')"></div>
+                    <div class="custom-color">
+                        <input type="color" id="custom-handle-color" onchange="selectCustomHandleColor(this.value)">
+                        <label for="custom-handle-color">Personalize sua cor</label>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Escolha a Cor do Fundo</h2>
+                <div class="color-picker">
+                    <div style="background-color: #f44336;" onclick="selectBackgroundColor('#f44336')"></div>
+                    <div style="background-color: #e91e63;" onclick="selectBackgroundColor('#e91e63')"></div>
+                    <div style="background-color: #9c27b0;" onclick="selectBackgroundColor('#9c27b0')"></div>
+                    <div style="background-color: #673ab7;" onclick="selectBackgroundColor('#673ab7')"></div>
+                    <div style="background-color: #3f51b5;" onclick="selectBackgroundColor('#3f51b5')"></div>
+                    <div class="custom-color">
+                        <input type="color" id="custom-background-color" onchange="selectCustomBackgroundColor(this.value)">
+                        <label for="custom-background-color">Personalize sua cor</label>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Escolha a Cor da Lateral</h2>
+                <div class="color-picker">
+                    <div style="background-color: #f44336;" onclick="selectSideColor('#f44336')"></div>
+                    <div style="background-color: #e91e63;" onclick="selectSideColor('#e91e63')"></div>
+                    <div style="background-color: #9c27b0;" onclick="selectSideColor('#9c27b0')"></div>
+                    <div style="background-color: #673ab7;" onclick="selectSideColor('#673ab7')"></div>
+                    <div style="background-color: #3f51b5;" onclick="selectSideColor('#3f51b5')"></div>
+                    <div class="custom-color">
+                        <input type="color" id="custom-side-color" onchange="selectCustomSideColor(this.value)">
+                        <label for="custom-side-color">Personalize sua cor</label>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Escolha o Modelo da Ecobag</h2>
+                <div class="model-selector">
+                    <div onclick="selectModel('com zíper')">Com Zíper</div>
+                    <div onclick="selectModel('sem zíper')">Sem Zíper</div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Escolha o Tamanho da Ecobag</h2>
+                <div class="size-selector">
+                    <div onclick="selectSize('pequeno')">Pequeno</div>
+                    <div onclick="selectSize('médio')">Médio</div>
+                    <div onclick="selectSize('grande')">Grande</div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Acessórios</h2>
+                <div class="accessories-selector">
+                    <div>Tag</div>
+                    <div>Caneta</div>
+                    <div>Caneca</div>
+                    <div>Chaveiro</div>
+                    <!-- Mais acessórios -->
+                </div>
+            </div>
+            <div class="
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Contato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+        .form-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-section h2 {
+            margin-top: 0;
+        }
+        .form-input {
+            margin-bottom: 15px;
+        }
+        .form-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .submit-button {
+            text-align: center;
+        }
+        .submit-button button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .submit-button button:hover {
+            background-color: #45a049;
+        <div class="form-input">
+    <label for="media">Escolha uma imagem:</label>
+    <input type="file" id="media" name="media" accept="image/*" required>
+</div>
+}
+    </style>
+</head>
+<body>
+
+<div class="form-input">
+    <label for="media">Envie uma Imagem para a estampa da EcoBag:</label>
+    <input type="file" id="media" name="media" accept="image/*" required>
+</div>
+
+    <div class="container">
+        <div class="form-section">
+            <h2>Formulário de Contato</h2>
+            <form action="https://ipmabrasil.weebly.com" method="get" target="_blank">
+                <div class="form-input">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-input">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-input">
+                    <label for="phone">Telefone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="submit-button">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
